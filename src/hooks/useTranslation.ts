@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { LanguageContext } from "../context/LanguageContext";
 
-export default function useTranslation() {
+export default function useTranslation(): any {
   const { localization } = useContext(LanguageContext);
   function t(key: string) {
     if (!localization.translations[key]) {

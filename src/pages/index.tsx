@@ -1,8 +1,7 @@
-import React from "react";
+import React from 'react';
+import Head from 'next/head';
 
-import Head from "next/head";
-
-import { getInitialLocale } from "../translations/getInitialLocale";
+import { getInitialLocale } from '../translations/getInitialLocale';
 
 const Index: React.FC = () => {
   React.useEffect(() => {
@@ -11,7 +10,7 @@ const Index: React.FC = () => {
 
   return (
     <Head>
-      <meta name="robots" content="noindex, nofollow" />
+      <meta name='robots' content='noindex, nofollow' />
     </Head>
   );
 };

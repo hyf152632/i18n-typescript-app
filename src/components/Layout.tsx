@@ -1,37 +1,40 @@
-import React, { ReactNode } from "react";
-import Link from "next/link";
-import Head from "next/head";
-import LocaleSwitcher from "./LocaleSwitcher";
-import useTranslation from "../hooks/useTranslation";
+import React, { ReactNode } from 'react';
+import Link from 'next/link';
+import Head from 'next/head';
+import LocaleSwitcher from './LocaleSwitcher';
+import useTranslation from '../hooks/useTranslation';
 
 type Props = {
   children?: ReactNode;
   title?: string;
 };
 
-const Layout = ({ children, title = "This is the default title" }: Props) => {
-  const { t } = useTranslation();
+const Layout = ({ children, title = 'This is the default title' }: Props) => {
+  const { t, locale } = useTranslation();
   return (
     <div>
       <Head>
         <title>{title}</title>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta charSet='utf-8' />
+        <meta name='viewport' content='initial-scale=1.0, width=device-width' />
       </Head>
       <header>
         <nav>
-          <Link href="/">
-            <a>{t("common")["navHome"]}</a>
-          </Link>{" "}
-          |{" "}
-          <Link href="/about">
-            <a>{t("common")["navAbout"]}</a>
-          </Link>{" "}
-          |{" "}
-          <Link href="/users">
-            <a>{t("common")["navUsersList"]}</a>
-          </Link>{" "}
-          | <a href="/api/users">{t("common")["navUsersAPI"]}</a>
+          <Link href='/[lang]' as={`/${locale}`}>
+            <a>{t('common')['navHome']}</a>
+          </Link>{' '}
+          |{' '}
+          <Link href='/[lang]/about' as={`/${locale}/about`}>
+            <a>{t('common')['navAbout']}</a>
+          </Link>{' '}
+          |{' '}
+          <Link href='/[lang]/users' as={`/${locale}/users`}>
+            <a>{t('common')['navUsersList']}</a>
+          </Link>{' '}
+          |{' '}
+          <Link href='/api/users'>
+            <a>{t('common')['navUsersAPI']}</a>
+          </Link>
         </nav>
         <LocaleSwitcher />
       </header>

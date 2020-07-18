@@ -16,7 +16,7 @@ export function useLocalStorage(key: string, initialValue: any = "") {
   });
   // Return a wrapped version of useState's setter function that ...
   // ... persists the new value to localStorage.
-  const setValue = (value) => {
+  const setValue = (value: any = '') => {
     try {
       // Allow value to be a function so we have same API as useState
       const valueToStore =
@@ -27,7 +27,7 @@ export function useLocalStorage(key: string, initialValue: any = "") {
       window.localStorage.setItem(key, JSON.stringify(valueToStore));
     } catch (error) {
       // A more advanced implementation would handle the error case
-      console.log(error);
+      console.error(error);
     }
   };
   return [storedValue, setValue];

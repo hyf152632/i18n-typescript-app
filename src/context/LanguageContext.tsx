@@ -1,9 +1,9 @@
-import React from "react";
-import { useRouter } from "next/router";
-import { useLocalStorage } from "../hooks/useLocalStorage";
-import { isLocale, Localization, Locale } from "../translations/types";
-import defaultStrings from "../translations/locales/en";
-import locales from "../translations/locales";
+import React from 'react';
+import { useRouter } from 'next/router';
+import { useLocalStorage } from '../hooks/useLocalStorage';
+import { isLocale, Localization, Locale } from '../translations/types';
+import defaultStrings from '../translations/locales/en';
+import locales from '../translations/locales';
 
 /**
  * Language Context
@@ -16,9 +16,9 @@ interface ContextProps {
 
 export const LanguageContext = React.createContext<ContextProps>({
   localization: {
-    locale: "en", // default lang
+    locale: 'en', // default lang
     translations: defaultStrings.common, // default translations TODO: what to do here?
-    namespace: "common", // default namespace TODO: could we null this? 'common' might be misleading
+    namespace: 'common', // default namespace TODO: could we null this? 'common' might be misleading
   },
   setLocale: () => null,
 });
@@ -36,7 +36,7 @@ export const LanguageProvider: React.FC<{ localization: Localization }> = ({
     translations: localization?.translations,
     namespace: localization?.namespace,
   });
-  const [getStoredLocale, setStoredLocale] = useLocalStorage("locale");
+  const [getStoredLocale, setStoredLocale] = useLocalStorage('locale');
   const { query } = useRouter();
   React.useEffect(() => {
     if (localizationState.locale !== getStoredLocale) {
@@ -46,7 +46,7 @@ export const LanguageProvider: React.FC<{ localization: Localization }> = ({
 
   React.useEffect(() => {
     if (
-      typeof query.lang === "string" &&
+      typeof query.lang === 'string' &&
       isLocale(query.lang) &&
       localization?.locale !== query.lang
     ) {
@@ -67,8 +67,11 @@ export const LanguageProvider: React.FC<{ localization: Localization }> = ({
   );
 };
 
-export const getLocalizationProps = (ctx, namespace) => {
-  const lang: Locale = (ctx.params?.lang as Locale) || "fr";
+export const getLocalizationProps = (
+  ctx: { params?: { lang?: string } },
+  namespace: string
+) => {
+  const lang: Locale = (ctx.params?.lang as Locale) || 'en';
   const locale: any = locales[lang];
   const strings: any = locale[namespace];
   const translations = {
@@ -76,7 +79,7 @@ export const getLocalizationProps = (ctx, namespace) => {
     ...strings,
   };
   return {
-    locale: ctx.params?.lang || "en",
+    locale: ctx.params?.lang || 'en',
     translations,
     namespace,
   };
