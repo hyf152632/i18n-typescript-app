@@ -84,3 +84,20 @@ export const getLocalizationProps = (
     namespace,
   };
 };
+
+export const getLocalizationPropsWithNamespace = (
+  lang: string = 'en',
+  namespace: string = 'common'
+) => {
+  const locale: any = locales[lang as Locale] || 'en';
+  const strings: any = locale[namespace];
+  const translations = {
+    common: locale.common,
+    ...strings,
+  };
+  return {
+    locale: lang,
+    translations,
+    namespace,
+  };
+};

@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import Link from 'next/link';
-import Head from 'next/head';
+import SEO from '@/components/SEO';
 import LocaleSwitcher from './LocaleSwitcher';
 import useTranslation from '../hooks/useTranslation';
 
@@ -13,11 +13,7 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => {
   const { t, locale } = useTranslation();
   return (
     <div>
-      <Head>
-        <title>{title}</title>
-        <meta charSet='utf-8' />
-        <meta name='viewport' content='initial-scale=1.0, width=device-width' />
-      </Head>
+      <SEO title={title} lang={locale} />
       <header>
         <nav>
           <Link href='/[lang]' as={`/${locale}`}>

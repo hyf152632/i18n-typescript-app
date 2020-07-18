@@ -1,22 +1,14 @@
-import Layout from '../../components/Layout';
+import Layout from '@/components/Layout';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
-import {
-  getLocalizationProps,
-  LanguageProvider,
-} from '../../context/LanguageContext';
-import { Localization } from '../../translations/types';
-import { locales } from '../../translations/config';
-import { Home } from '../../components/Home';
+import { getLocalizationProps } from '../../context/LanguageContext';
+import { locales } from '@/translations/config';
+import { Home } from '@/components/Home';
 
-const IndexPage: NextPage<{
-  localization: Localization;
-}> = ({ localization }) => {
+const IndexPage: NextPage<{}> = () => {
   return (
-    <LanguageProvider localization={localization}>
-      <Layout title='Home | Next.js + TypeScript Example'>
-        <Home />
-      </Layout>
-    </LanguageProvider>
+    <Layout title='Home | IVI 3D'>
+      <Home />
+    </Layout>
   );
 };
 
